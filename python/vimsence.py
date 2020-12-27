@@ -4,6 +4,7 @@ import time
 import re
 import utils as u
 import logging
+import get_repo_url
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +25,13 @@ base_activity = {
     'assets': {
         'small_text': small_text,
         'small_image': small_image,
-    }
+    },
+    'buttons': []
 }
+
+if vim.eval("exists('g:vimsence_display_github')") == "1" and vim.eval("exists('g:vimsence_github_user')") == "1":
+    username = vim.eval("g:vimsence_github_user")
+    base_activity['buttons'].append({'label': 'GitHub', 'url': f'https://github.com/{username}'})
 
 client_id = '439476230543245312'
 # Get the application id from vim configuration if there is one
@@ -125,7 +131,7 @@ def update_presence():
     editing_text = 'Editing a {} file'
     if (vim.eval("exists('{}')".format("g:vimsence_editing_large_text")) == "1"):
         editing_text = vim.eval("g:vimsence_editing_large_text")
- 
+
     editing_state = 'Workspace: {}'
     if (vim.eval("exists('{}')".format("g:vimsence_editing_state")) == "1"):
         editing_state = vim.eval("g:vimsence_editing_state")
@@ -175,6 +181,12 @@ def update_presence():
     activity['assets']['large_text'] = large_text
     activity['details'] = details
     activity['state'] = state
+
+    if vim.eval("exists('g:vimsence_display_github_repo')") == "1":
+        if url:=get_repo_url.run():
+            #  activity['buttons'].insert(0, {'label': 'View on GitHub', 'url': url})
+            activity['buttons'][0] = {'label': 'View on GitHub', 'url': url}
+
 
     try:
         rpc_obj.set_activity(activity)
