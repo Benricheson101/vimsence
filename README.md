@@ -59,6 +59,7 @@ let g:vimsence_custom_icons = {'filetype': 'iconname'}
 |-------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | <img src="https://avatars.githubusercontent.com/anned20" height=30px align=center>   [Anne Douwe Bouma](https://github.com/anned20) | Original work         |
 | <img src="https://avatars.githubusercontent.com/hugolgst" height=30px align=center>   [Hugo Lageneste](https://github.com/hugolgst) | Maintaining this fork |
+| <img src="https://avatars.githubusercontent.com/Benricheson101" height=30px align=center>   [Ben Richeson](https://github.com/Benricheson101) | Creator of fork with buttons |
 
 See also the list of [contributors](https://github.com/hugolgst/vimsence/contributors) who participated in this project.
 
